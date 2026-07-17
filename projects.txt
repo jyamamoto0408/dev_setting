@@ -1,0 +1,6 @@
+# ガードレール配布先プロジェクト一覧（sync-guardrails.ps1 が読む）
+# 形式: <プロジェクトの絶対パス> | <claude / codex / both>
+# 行頭 # はコメント。-Init で自動登録される。
+#
+# 例:
+# C:\Users\Fantas03\Documents\cursor_project\fantas_deli | both

@@ -1,0 +1,25 @@
+# Codex CLI 権限ガードレールのサンプル
+# ~/.codex/config.toml にコピー（または該当項目を追記）して使う。
+# Codexの権限制御はグローバル設定（~/.codex/config.toml）で行う点がClaude Codeと異なる。
+
+# 実行前に承認を求めるポリシー:
+#   untrusted  = 信頼済みコマンド以外は毎回確認（最も安全）
+#   on-request = モデルが必要と判断したとき確認（推奨）
+#   on-failure = サンドボックス内で失敗したときのみ確認
+#   never      = 確認なし（このワークフローでは非推奨）
+approval_policy = "on-request"
+
+# サンドボックス:
+#   read-only        = 読み取りのみ
+#   workspace-write  = 作業ディレクトリ内のみ書き込み可（推奨）
+#   danger-full-access = 制限なし（非推奨）
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+# ネットワークアクセスは既定で禁止。パッケージ取得等で必要なときのみ true に。
+network_access = false
+
+# チケット駆動ATDD用のプロファイル。`codex --profile atdd` で明示的に使える。
+[profiles.atdd]
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
