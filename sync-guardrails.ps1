@@ -53,6 +53,8 @@ function Sync-DocsTemplates($srcRoot, $proj) {
 function Sync-Claude($proj) {
   Write-Host " [claude] $proj"
   Copy-GuardFile (Join-Path $master 'CLAUDE.md') (Join-Path $proj 'CLAUDE.md')
+  # README.md はプロジェクト自身のREADMEと衝突するため GUARDRAILS.md として配布
+  Copy-GuardFile (Join-Path $master 'README.md') (Join-Path $proj 'GUARDRAILS.md')
   Copy-GuardFile (Join-Path $master '.claude\settings.json') (Join-Path $proj '.claude\settings.json')
   Get-ChildItem (Join-Path $master '.claude\commands') -Filter *.md |
     Where-Object Name -ne 'spec-new.md' |    # 廃止コマンドは新規配布しない
@@ -64,6 +66,8 @@ function Sync-Codex($proj) {
   Write-Host " [codex] $proj"
   $cm = Join-Path $master 'codex'
   Copy-GuardFile (Join-Path $cm 'AGENTS.md') (Join-Path $proj 'AGENTS.md')
+  # README.md はプロジェクト自身のREADMEと衝突するため GUARDRAILS-codex.md として配布
+  Copy-GuardFile (Join-Path $cm 'README.md') (Join-Path $proj 'GUARDRAILS-codex.md')
   Get-ChildItem (Join-Path $cm '.agents\skills') -Directory |
     Where-Object Name -ne 'spec-new' |       # 廃止スキルは新規配布しない
     ForEach-Object { Copy-GuardFile (Join-Path $_.FullName 'SKILL.md') (Join-Path $proj ".agents\skills\$($_.Name)\SKILL.md") }

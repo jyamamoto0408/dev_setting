@@ -36,8 +36,10 @@ cd C:\Users\Fantas03\Documents\dev_setting
 .\sync-guardrails.ps1 -DryRun   # 配布内容の事前確認
 ```
 
-配布されるのは**ルール・コマンド/スキル・テンプレートのみ**。各プロジェクトの実文書
-（requirements.md・チケット・ADR・TWEAKS.md 等）には触れない。
+配布されるのは**ルール・コマンド/スキル・テンプレート・使い方ガイドのみ**。各プロジェクトの
+実文書（requirements.md・チケット・ADR・TWEAKS.md 等）には触れない。
+この README.md は各プロジェクトには `GUARDRAILS.md`（Codex版は `GUARDRAILS-codex.md`）と
+いう名前で配布される。プロジェクト自身の README.md はプロジェクト側で自由に作ってよい。
 
 ### 改善の還流（プロジェクト → マスター）
 
